@@ -6,7 +6,7 @@
 # replace default config
 
 multipass: true
-full: true
+#full: true
 
 # https://github.com/svg/svgo/blob/master/lib/svgo/js2svg.js#L6 for more config options
 
@@ -15,6 +15,10 @@ js2svg:
   indent: 2
 
 plugins:
+  # remove this with IE 11 is no longer supported
+  - addAttributesToSVGElement:
+      attributes:
+        - focusable: false
   - cleanupAttrs: true
   - cleanupEnableBackground: true
   - cleanupIDs: true
@@ -41,12 +45,13 @@ plugins:
   - removeHiddenElems: true
   - removeMetadata: true
   - removeNonInheritableGroupAttrs: true
-  - removeTitle: true
-  - removeUnknownsAndDefaults: true
+  - removeTitle: false
+  - removeUnknownsAndDefaults:
+      keepRoleAttr: true
   - removeUnusedNS: true
   - removeUselessDefs: true
   - removeUselessStrokeAndFill: true
   - removeViewBox: false
   - removeXMLNS: false
-  - removeXMLProcInst: false
+  - removeXMLProcInst: true
   - sortAttrs: true
